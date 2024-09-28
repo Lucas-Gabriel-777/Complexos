@@ -1,5 +1,7 @@
 /*Autor: Lucas Gabriel dos Santos Lima
-  Data:25-09-2024 */
+  Data:26-09-2024 
+  Objetivo: Criar um programa com metodos variados para calculo da aera de figuras geometricas
+  usando ponteiros e variaveis dinamicas*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,29 +46,33 @@ void tela(){
 }
 
 void circulo(){
-    float raio,area;
-    int op;
+    float *raio,*area;
+    int *op; 
     do {
-        system("Cls");
-        tela();
+        raio = (float *) malloc (sizeof(float));
+        area = (float *) malloc (sizeof(float));
+        op = (int *) malloc (sizeof(int));
+
+        system("Cls"); 
+        tela(); 
         gotoxy(02,06);
         printf("Digite 1 para calcular ou 2 para cancelar: ");
         gotoxy(45,06);
-        scanf("%d", &op);
+        scanf("%d", op);
 
-        if (op ==2){
+        if (*op == 2){
             printf("Encerrando programa");
             break;
         }
 
-        else if (op == 1){
+        else if (*op == 1){
             
             gotoxy(02,07);
             printf("Digite o valor do raio: ");
             gotoxy(26,07);
-            scanf("%f", &raio);
+            scanf("%f", raio);
 
-            if (raio < 0){
+            if (*raio < 0.00){
                 do{
                     gotoxy(02,24);
                     printf("O raio deve ser maior que ZERO. Tecle enter para tentar novamente");
@@ -77,47 +83,57 @@ void circulo(){
                     gotoxy(26,07);
                     printf("                 ");
                     gotoxy(26,07);
-                    scanf("%f", &raio);
-                } while (raio < 0);
+                    scanf("%f", raio);
+                } while (*raio < 0.00);
                 
             } 
 
-            area = pow((3.1416 * raio), 2);
+            *area = pow((3.1416 * (*raio)), 2); 
 
             gotoxy(2,8);
             printf("Valor da area do criculo: ");
             gotoxy(28,8);
-            printf("%.2f", area);
+            printf("%.2f", *area);
             getch();
         }
 
-    } while (op !=1  || op  != 2);
+    } while (*op !=1  || *op  != 2);
+
+    free(raio);
+    free(op);
+    free(area);
 }
 
 void retangulo(){
-    float area, lado,altura;
-    int op;
+    float *area, *lado,*altura;
+    int *op;
     do {
+
+        area = (float *) malloc (sizeof(float));
+        lado = (float *) malloc (sizeof(float));
+        altura = (float *) malloc (sizeof(float));
+        op = (int *) malloc (sizeof(int));
+
         system("Cls");
-        tela();
+        tela(); 
         gotoxy(02,06);
         printf("Digite 1 para calcular ou 2 para cancelar: ");
         gotoxy(45,06);
-        scanf("%d", &op);
+        scanf("%d", op);
 
-        if (op ==2){
+        if (*op ==2){
             printf("Encerrando programa");
             break;
         }
 
-        else if (op == 1){
+        else if (*op == 1){
             
             gotoxy(02,07);
             printf("Digite o valor do lado: ");
             gotoxy(26,07);
-            scanf("%f", &lado);
+            scanf("%f", lado);
 
-            if (lado <= 0){
+            if (*lado <= 0.00){ 
                 do{
                     gotoxy(02,24);
                     printf("O lado deve ser maior que ZERO. Tecle enter para tentar novamente");
@@ -128,15 +144,15 @@ void retangulo(){
                     gotoxy(26,07);
                     printf("                 ");
                     gotoxy(26,07);
-                    scanf("%f", &lado);
-                } while (lado <= 0); 
+                    scanf("%f", lado);
+                } while (*lado <= 0.00); 
             } 
 
             gotoxy(02,8);
             printf("Digite o valor da altura: ");
             gotoxy(28,8);
-            scanf("%f", &altura);
-            if (altura <= 0){
+            scanf("%f", altura);
+            if (*altura <= 0.00){
                 do{
                     gotoxy(02,24);
                     printf("A altura deve ser maior que ZERO. Tecle enter para tentar novamente");
@@ -147,46 +163,56 @@ void retangulo(){
                     gotoxy(26,07);
                     printf("                 ");
                     gotoxy(28,8);
-                    scanf("%f", &altura);
-                } while (altura <= 0);
+                    scanf("%f", altura);
+                } while (*altura <= 0.00);
             }
 
-            area = lado * altura;
+            *area = *lado * *altura; 
 
             gotoxy(2,9);
             printf("Valor da area do retangulo: ");
             gotoxy(30,9);
-            printf("%.2f", area);
+            printf("%.2f", *area);
             getch();
         }
 
-    } while (op !=1  || op  != 2);
+    } while (*op !=1  || *op  != 2);
+    free(area);
+    free(lado);
+    free(altura);
+    free(op);
 }
 
-void retangulo(){
-    float area, bma, bme, altura;
-    int op;
+void trapezio(){
+    float *area, *bma, *bme, *altura;
+    int *op; 
     do {
-        system("Cls");
-        tela();
+        area = (float *) malloc (sizeof(float));
+        bme = (float *) malloc (sizeof(float));
+        bma = (float *) malloc (sizeof(float));
+        altura = (float *) malloc (sizeof(float));
+        op = (int *) malloc (sizeof(int));
+
+        system("Cls"); 
+        tela(); 
         gotoxy(02,06);
         printf("Digite 1 para calcular ou 2 para cancelar: ");
         gotoxy(45,06);
-        scanf("%d", &op);
+        scanf("%d", op);
 
-        if (op ==2){
+        if (*op ==2){ 
             printf("Encerrando programa");
             break;
         }
 
-        else if (op == 1){
+        else if (*op == 1){ 
             
             gotoxy(02,07);
             printf("Digite o valor da menor base: ");
-            gotoxy(26,07);
-            scanf("%f", &bme);
+            gotoxy(32,07);
+            scanf("%f", bme);
 
-            if (bme <= 0){
+            if (*bme <= 0.00){ 
                 do{
                     gotoxy(02,24);
                     printf("A menor base deve ser maior que ZERO. Tecle enter para tentar novamente");
@@ -194,18 +220,18 @@ void retangulo(){
                     
                     gotoxy(02,24);
                     printf("                                                                        ");
-                    gotoxy(26,07);
+                    gotoxy(32,07);
                     printf("                 ");
-                    gotoxy(26,07);
-                    scanf("%f", &bme);
-                } while (bme <= 0); 
+                    gotoxy(32,07);
+                    scanf("%f", bme);
+                } while (*bme <= 0); 
             } 
 
-            gotoxy(02,9);
+            gotoxy(02,8);
             printf("Digite o valor da maior base: ");
-            gotoxy(32,9);
-            scanf("%f", &bma);
-            if (altura <= 0){
+            gotoxy(32,8);
+            scanf("%f", bma);
+            if (*bma <= 0.00){ 
                 do{
                     gotoxy(02,24);
                     printf("A maior base deve ser maior que ZERO. Tecle enter para tentar novamente");
@@ -213,18 +239,18 @@ void retangulo(){
                     
                     gotoxy(02,24);
                     printf("                                                                        ");
-                    gotoxy(26,07);
+                    gotoxy(32,8);
                     printf("                 ");
-                    gotoxy(32,9);
-                    scanf("%f", &bma);
-                } while (bma <= 0);
+                    gotoxy(32,8);
+                    scanf("%f", bma);
+                } while (*bma <= 0);
             }
-            gotoxy(02,07);
-            printf("Digite o valor da menor base: ");
-            gotoxy(26,07);
-            scanf("%f", &bme);
+            gotoxy(02,9);
+            printf("Digite o valor da altura: ");
+            gotoxy(28,9);
+            scanf("%f", altura);
 
-            if (bme <= 0){
+            if (*altura <= 0.00){ 
                 do{
                     gotoxy(02,24);
                     printf("A menor base deve ser maior que ZERO. Tecle enter para tentar novamente");
@@ -232,27 +258,115 @@ void retangulo(){
                     
                     gotoxy(02,24);
                     printf("                                                                        ");
+                    gotoxy(28,9);
+                    printf("                 ");
+                    gotoxy(28,9);
+                    scanf("%f", altura);
+                } while (*altura <= 0);
+            }
+
+            *area = ((*bma + *bme) * *altura) / 2; 
+
+            gotoxy(2,10);
+            printf("Valor da area do retangulo: ");
+            gotoxy(30,10);
+            printf("%.2f", *area);
+            getch(); 
+            
+
+        } 
+    } while (*op !=1  || *op  != 2);
+    free(area);
+    free(bma);
+    free(bme);
+    free(altura);
+    free(op);
+}
+
+void triangulo(){
+    float *area, *base, *altura;
+    int *op; 
+    do {
+
+        area = (float *) malloc (sizeof(float));
+        base = (float *) malloc (sizeof(float));
+        altura = (float *) malloc (sizeof(float));
+        op = (int *) malloc (sizeof(int)); 
+
+        system("Cls");
+        tela(); 
+        gotoxy(02,06);
+        printf("Digite 1 para calcular ou 2 para cancelar: ");
+        gotoxy(45,06);
+        scanf("%d", op);
+
+        if (*op ==2){
+            printf("Encerrando programa");
+            break;
+        }
+
+        else if (*op == 1){ 
+            
+            gotoxy(02,07);
+            printf("Digite o valor do lado: ");
+            gotoxy(26,07);
+            scanf("%f", base);
+
+            if (*base <= 0.00){ 
+                do{
+                    gotoxy(02,24);
+                    printf("O lado deve ser maior que ZERO. Tecle enter para tentar novamente");
+                    getch();
+                    
+                    gotoxy(02,24);
+                    printf("                                                                  ");
                     gotoxy(26,07);
                     printf("                 ");
                     gotoxy(26,07);
-                    scanf("%f", &bme);
-                } while (bme <= 0); 
+                    scanf("%f", base);
+                } while (*base <= 0); 
+            } 
 
-            area = lado * altura;
+            gotoxy(02,8);
+            printf("Digite o valor da altura: ");
+            gotoxy(28,8);
+            scanf("%f", altura);
+            if (*altura <= 0.00){ 
+                do{
+                    gotoxy(02,24);
+                    printf("A altura deve ser maior que ZERO. Tecle enter para tentar novamente");
+                    getch();
+                    
+                    gotoxy(02,24);
+                    printf("                                                                    ");
+                    gotoxy(26,07);
+                    printf("                 ");
+                    gotoxy(28,8);
+                    scanf("%f", altura);
+                } while (*altura <= 0.00);
+            }
+
+            *area = (*base * *altura) /2; 
 
             gotoxy(2,9);
             printf("Valor da area do retangulo: ");
             gotoxy(30,9);
-            printf("%.2f", area);
+            printf("%.2f", *area); 
             getch();
         }
 
-    } while (op !=1  || op  != 2);
-}
+    } while (*op !=1  || *op  != 2);
 
+    free(area);
+    free(base);
+    free(altura);
+    free(op);
+}
 int main (){
-    int op;
+    int *op; 
     do {
+        op = (int *) malloc (sizeof(int)); 
+
         system("Cls");
         tela();
 
@@ -272,9 +386,9 @@ int main (){
         gotoxy(28,15);
         printf("Opcao: ");
         gotoxy(35,15);
-        scanf("%d",&op);
+        scanf("%d", op); 
 
-        if (op <0){
+        if (*op <0.00){ a
             do {
                 gotoxy(02,24);
                 printf("Resposta invalida, tecle Enter para continuar");
@@ -284,11 +398,11 @@ int main (){
                 gotoxy(35,15);
                 printf("           ");
                 gotoxy(35,15);
-                scanf("%d",&op);
-            } while (op < 0);
+                scanf("%d", op);
+            } while (*op < 0.00);
         }
 
-        switch(op){
+        switch(*op){ 
             case 1:
             gotoxy(02,24);
             printf("Calculadora de area circular, tecle C para continuar");
@@ -330,11 +444,17 @@ int main (){
             break;
         }
 
-        if (op == 1){
+        if (*op == 1){
             circulo();
         }
-        else if ( op ==2){
+        else if ( *op == 2){
             retangulo();
+        } else if (*op ==3 ){
+            trapezio();
+        } else if (*op == 4){
+            triangulo();
         }
-    }while ( op > 0 && op < 5);
+    }while ( *op > 0 && *op < 5);
+
+    return 0; 
 } 
