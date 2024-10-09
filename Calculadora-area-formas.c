@@ -388,7 +388,7 @@ int main (){
         gotoxy(35,15);
         scanf("%d", op); 
 
-        if (*op <0.00){ a
+        if (*op <0.00){ 
             do {
                 gotoxy(02,24);
                 printf("Resposta invalida, tecle Enter para continuar");
