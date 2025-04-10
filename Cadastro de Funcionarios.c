@@ -1,6 +1,6 @@
 /*Autor: Lucas Gabriel dos Santos Lima
   Data:10-04-2025
-  Objetivo: Criar uma tela interativa para usuario que registre informacoes */
+  Objetivo: Criar uma tela interativa para usuario que registre informacoes e permita cosulta de cadastros */
 
 #include <stdio.h>
 #include <stdlib.h>
