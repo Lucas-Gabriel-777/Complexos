@@ -1,5 +1,5 @@
 /*Autor: Lucas Gabriel dos Santos Lima
-  Data:07-09-2024
+  Data:10-04-2025
   Objetivo: Criar uma tela interativa para usuario que registre informacoes */
 
 #include <stdio.h>
@@ -87,6 +87,7 @@ int main () {
     int j = 0;
     int resp,op;
     do{
+        
         system("Cls");
         tela();
         gotoxy(28,8);
@@ -102,6 +103,19 @@ int main () {
         printf("Opcao: ");
         gotoxy(38,12);
         scanf("%d",&op);
+
+        if(op>3 || op<1){ 
+            do{
+                gotoxy(28,13);
+                printf("Opcao invalida, tente novamente!");
+                getch();
+                gotoxy(38,12);
+                printf("        ");
+                gotoxy(38,12);
+                scanf("%d",&op);        
+            } while(op<1 || op>3);
+        }
+        
         switch(op){
             case 1:
             gotoxy(28,12);
@@ -142,9 +156,9 @@ int main () {
                             printf("Informacao (Idade) invalida, pressione enter para continuar");
                             getch();
                             gotoxy(02,24);
-                            printf("                                                                     ");
+                            printf("                                                            ");
                             gotoxy(11,8);
-                            printf("       ");
+                            printf("                                                            ");
                             gotoxy(11,8);
                             scanf("%d", &User[i].idade);
                         } while (User[i].idade<18 || User[i].idade>195);
@@ -158,9 +172,9 @@ int main () {
                             printf("Informacao (Salario) invalida, pressione enter para continuar");
                             getch();
                             gotoxy(02,24);
-                            printf("                                                                     ");
+                            printf("                                                             ");
                             gotoxy(13,10);
-                            printf("         ");
+                            printf("                                                             ");
                             gotoxy(13,10);
                             scanf("%d", &User[i].salario);
                         } while( User[i].salario<1200);
@@ -174,23 +188,26 @@ int main () {
                             printf("Informacao (Sexo) invalida, pressione enter para continuar");
                             getch();
                             gotoxy(02,24);
-                            printf("                                                                     ");
+                            printf("                                                          ");
                             gotoxy(19,12);
-                            printf("      ");
+                            printf("                                                          ");
                             gotoxy(19,12);
                             scanf(" %c", &User[i].sexo);
                         }while(User[i].sexo != 'M' && User[i].sexo != 'F');
                     }
 
                     gotoxy(02,24);
-                    printf("Deseja cadastrar mais pessoas? (1-SIM  2-Nao)");
-                    gotoxy(48,24);
+                    printf("Deseja cadastrar mais pessoas? (1-SIM  2-Nao): ");
+                    gotoxy(50,24);
                     scanf("%d",&resp);
                     
                     if (resp != 1 && resp != 2){
                         gotoxy(02,24);
                         printf("Resposta invalida, digite 1 para continuar, ou 2 para sair");
-                        gotoxy(48,24);
+                        getch();
+                        gotoxy(50,24);
+                        printf("       ");
+                        gotoxy(50,24);
                         scanf("%d",&resp);
                     } else if (resp == 2){
                         break;
@@ -229,7 +246,6 @@ int main () {
             break;
         }
 
-    }while(op == 1 || op ==2);
-    
+    }while(op !=3);
     gotoxy(00,27);
 }
