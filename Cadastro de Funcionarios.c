@@ -1,6 +1,6 @@
 /*Autor: Lucas Gabriel dos Santos Lima
-  Data:10-04-2025
-  Objetivo: Criar uma tela interativa para usuario que registre informacoes e permita cosulta de cadastros */
+  Data:12-04-2025
+  Objetivo: Criar uma tela interativa para usuario que registre informacoes */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -132,7 +132,7 @@ int main () {
 
         if (op == 1){
             do{
-                for (i=0;i<5;i++){
+                for (i=1;i<6;i++){
                     system("Cls");
                     tela();
 
@@ -140,50 +140,64 @@ int main () {
                     printf("Cadastro Numero %d", i);
 
                     gotoxy(02,8);
-                    printf("1-Idade: ");
+                    printf("1-Idade(Minimo 18 - Maximo 140): ");
                     
                     gotoxy(02,10);
-                    printf("2-Salario: ");
+                    printf("2-Salario(minimo 1.200,00): ");
                     
                     gotoxy(02,12);
                     printf("3-Sexo (M ou F): ");
+
+                    gotoxy(02,14);
+                    printf("4-Cancelar");
                     
-                    gotoxy(11,8);
+                    gotoxy(35,8);
                     scanf("%d", &User[i].idade);
-                    if (User[i].idade<18 || User[i].idade>195 ){
+                    if (User[i].idade==4){
+                        break;
+                    }
+                    
+                    if (User[i].idade<18 || User[i].idade>140 ){                       
                         do{
                             gotoxy(02,24);
                             printf("Informacao (Idade) invalida, pressione enter para continuar");
                             getch();
                             gotoxy(02,24);
                             printf("                                                            ");
-                            gotoxy(11,8);
-                            printf("                                                            ");
-                            gotoxy(11,8);
+                            gotoxy(35,8);
+                            printf("                                            ");
+                            gotoxy(35,8);
                             scanf("%d", &User[i].idade);
-                        } while (User[i].idade<18 || User[i].idade>195);
+                        } while (User[i].idade<18 || User[i].idade>140);
                     }
                 
-                    gotoxy(13,10);
+                    gotoxy(30,10);
                     scanf("%d", &User[i].salario);
-                    if (User[i].salario < 1200){
+                    if(User[i].salario ==4){
+                        break;
+                    }
+
+                    if (User[i].salario < 1200){                       
                         do {
                             gotoxy(02,24);
                             printf("Informacao (Salario) invalida, pressione enter para continuar");
                             getch();
                             gotoxy(02,24);
                             printf("                                                             ");
-                            gotoxy(13,10);
-                            printf("                                                             ");
-                            gotoxy(13,10);
+                            gotoxy(30,10);
+                            printf("                                                 ");
+                            gotoxy(30,10);
                             scanf("%d", &User[i].salario);
                         } while( User[i].salario<1200);
                     }
                 
                     gotoxy(19,12);
                     scanf(" %c", &User[i].sexo);
-                    if (User[i].sexo != 'M' && User[i].sexo != 'F'){
-                        do {
+                    if(User[i].sexo ==4){
+                        break;
+                    }
+                    if (User[i].sexo != 'M' && User[i].sexo != 'F'){                       
+                        do {                           
                             gotoxy(02,24);
                             printf("Informacao (Sexo) invalida, pressione enter para continuar");
                             getch();
@@ -219,24 +233,28 @@ int main () {
         }
 
         if (op == 2){
-            system("Cls");
-            tela();
-            gotoxy(02,06);
-            printf("Qual cadastro voce deseja consultar? ");
-            gotoxy(39,06);
-            scanf("%d", &j);
-            i = j;
-            
-            gotoxy(02,07);
-            printf("Cadastro %d\n",i);
-            gotoxy(02,8);
-            printf("Idade: %d\n",User[i].idade);
-            gotoxy(02,9);
-            printf("Salario: %d\n",User[i].salario);
-            gotoxy(02,10);
-            printf("sexo: %c\n",User[i].sexo);
-            getch();
-
+            do{
+                system("Cls");
+                tela();
+                gotoxy(02,06);
+                printf("Qual cadastro voce deseja consultar? ");
+                gotoxy(02,07);
+                printf("0-Cancelar");
+                gotoxy(39,06);
+                scanf("%d", &j);
+                i = j;
+                
+                gotoxy(02,8);
+                printf("Cadastro %d\n",i);
+                gotoxy(02,9);
+                printf("Idade: %d\n",User[i].idade);
+                gotoxy(02,10);
+                printf("Salario: %d\n",User[i].salario);
+                gotoxy(02,11);
+                printf("sexo: %c\n",User[i].sexo);
+                gotoxy(02,12);
+                getch();
+            } while (j != 0);
         }
 
         if (op == 3){
@@ -245,6 +263,11 @@ int main () {
             getch();
             break;
         }
+
+    }while(op !=3);
+    gotoxy(00,27);
+}
+
 
     }while(op !=3);
     gotoxy(00,27);
