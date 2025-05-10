@@ -84,20 +84,20 @@ void circulo(){
                     printf("                 ");
                     gotoxy(26,07);
                     scanf("%f", raio);
-                } while (*raio < 0.00);
-                
+                } while (*raio < 0.00);        
             } 
 
-            *area = pow((3.1416 * (*raio)), 2); 
+            *area = 3.1416 * pow(*raio, 2); 
 
             gotoxy(2,8);
             printf("Valor da area do criculo: ");
             gotoxy(28,8);
             printf("%.2f", *area);
+            gotoxy(02,23);
+            printf("Tecle ENTER para continuar");
             getch();
         }
-
-    } while (*op !=1  || *op  != 2);
+    } while (*op != 1  || *op  != 2);
 
     free(raio);
     free(op);
@@ -155,12 +155,12 @@ void retangulo(){
             if (*altura <= 0.00){
                 do{
                     gotoxy(02,24);
-                    printf("A altura deve ser maior que ZERO. Tecle enter para tentar novamente");
+                    printf("A altura deve ser maior que ZERO. Tecle ENTER para tentar novamente");
                     getch();
                     
                     gotoxy(02,24);
                     printf("                                                                    ");
-                    gotoxy(26,07);
+                    gotoxy(26,8);
                     printf("                 ");
                     gotoxy(28,8);
                     scanf("%f", altura);
@@ -173,10 +173,12 @@ void retangulo(){
             printf("Valor da area do retangulo: ");
             gotoxy(30,9);
             printf("%.2f", *area);
+            gotoxy(02,23);
+            printf("Tecle ENTER para continuar");
             getch();
         }
+    } while (*op != 1  || *op  != 2);
 
-    } while (*op !=1  || *op  != 2);
     free(area);
     free(lado);
     free(altura);
@@ -271,9 +273,10 @@ void trapezio(){
             printf("Valor da area do retangulo: ");
             gotoxy(30,10);
             printf("%.2f", *area);
+            gotoxy(02,23);
+            printf("Tecle ENTER para continuar");
             getch(); 
             
-
         } 
     } while (*op !=1  || *op  != 2);
     free(area);
@@ -351,7 +354,9 @@ void triangulo(){
             gotoxy(2,9);
             printf("Valor da area do retangulo: ");
             gotoxy(30,9);
-            printf("%.2f", *area); 
+            printf("%.2f", *area);
+            gotoxy(02,23);
+            printf("Tecle ENTER para continuar");
             getch();
         }
 
@@ -362,6 +367,7 @@ void triangulo(){
     free(altura);
     free(op);
 }
+
 int main (){
     int *op; 
     do {
@@ -388,7 +394,7 @@ int main (){
         gotoxy(35,15);
         scanf("%d", op); 
 
-        if (*op <0.00){ 
+        if (*op <= 0 || *op > 5){
             do {
                 gotoxy(02,24);
                 printf("Resposta invalida, tecle Enter para continuar");
@@ -399,7 +405,7 @@ int main (){
                 printf("           ");
                 gotoxy(35,15);
                 scanf("%d", op);
-            } while (*op < 0.00);
+            } while (*op <= 0 || *op > 5);
         }
 
         switch(*op){ 
@@ -455,6 +461,6 @@ int main (){
             triangulo();
         }
     }while ( *op > 0 && *op < 5);
-
+    free(op);
     return 0; 
-} 
+}
